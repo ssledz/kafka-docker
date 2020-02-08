@@ -1,7 +1,7 @@
 ## Cluster Setup
 
 ```
-docker-compose up
+docker-compose up -d
 ```
 
 to start a cluster with two brokers
