@@ -2,6 +2,8 @@ version: '2'
 services:
   zookeeper:
     image: wurstmeister/zookeeper
+    labels:
+      - io.github.ssledz.service=zookeeper
     ports:
       - "2181:2181"
   kafka:
