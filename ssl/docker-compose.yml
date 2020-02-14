@@ -11,6 +11,8 @@ services:
       - "2181:2181"
   kafka:
     image: wurstmeister/kafka:2.12-2.4.0
+    labels:
+      - io.github.ssledz.service=kafka-ssl
     ports:
       - "9092"
       - "9093"

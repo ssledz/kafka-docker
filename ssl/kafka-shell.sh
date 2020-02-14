@@ -1,6 +1,8 @@
 #!/bin/bash
-brokers=$(docker ps --filter name=ssl_kafka --format "{{.Names}}" | sed s'/$/:9093/g' | tr '\n' ',' | sed 's/,$//')
-docker run --rm --network ssl_default \
+label="io.github.ssledz.service=kafka-ssl"
+brokers=$(docker ps --filter "label=$label" --format "{{.Names}}" | sed s'/$/:9093/g' | tr '\n' ',' | sed 's/,$//')
+network=$(docker ps --filter "label=$label" --format "{{.Networks}}")
+docker run --rm --network $network \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v ssl_kafka-ssl-config:/etc/kafka/config \
   -v ssl_kafka-ssl-secrets:/etc/kafka/secrets \
